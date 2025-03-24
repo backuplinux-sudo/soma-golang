@@ -8,7 +8,9 @@ jobs:
         steps:
             - name: checar versão
               run: go version
-            # - name: Preparando o golang
-            #   uses: actions/setup-go@v5
-            #   with:
-            #     go-version: '1.23.1'
+            - name: Preparando o golang
+              uses: actions/setup-go@v5
+              with:
+                go-version: '1.23.1'
+            - name: checar versão
+              run: go version
