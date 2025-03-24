@@ -3,16 +3,21 @@ name: Gerando artefato
 on: push
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Preparando o golang
-              uses: actions/setup-go@v5
-              with:
-                go-version: '1.23.1'
-            - name: Download dos arquivos
-              uses: actions/checkout@v4
-            - name: Build da aplicação
-              run: go build -o soma .
-            - name: Teste do artefato
-              run: ./soma 1 2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preparando o golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.1'
+      - name: Download dos arquivos
+        uses: actions/checkout@v4
+      - name: Build da aplicação
+        run: go build -o soma .
+      - name: Teste do artefato
+        run: ./soma 1 2
+      - name: Upload do artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: artefato_soma
+          path: soma
