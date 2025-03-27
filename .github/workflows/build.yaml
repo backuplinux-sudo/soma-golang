@@ -23,6 +23,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Download do artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: artefato_golang
       - name: Listar arquivos
         run: ls
       - name: Teste do artefato
