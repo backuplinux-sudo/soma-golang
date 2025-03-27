@@ -28,7 +28,7 @@ jobs:
         with:
           name: artefato_golang
       - name: Listar arquivos
-        run: ls
+        run: ls -la
       - name: Teste do artefato
         run: |
           resultado_esperado="110"
