@@ -14,13 +14,28 @@ jobs:
         uses: actions/checkout@v4
       - name: Build da aplicação
         run: go build -o soma .
-      - name: Teste do artefato
-        run: ./soma 1 2
       - name: Upload do artefato
         uses: actions/upload-artifact@v4
         with:
           name: artefato_golang
-          path: |
-            soma
-            go.mod
-            go.sum
+          path: soma
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Listar arquivos
+        run: ls
+      - name: Teste do artefato
+        run: |
+          resultado_esperado="110"
+          resultado=$(./soma 33 77)
+          if [ ${resultado} != ${resultado_esperado} ]; then
+            echo "::error::O resultado esperado era ${resultado_esperado} e o resultado foi ${resultado}"
+            exit 1
+          fi
+
+          resultado_esperado="51"
+          resultado=$(./soma 19 32)
+          if [ ${resultado} != ${resultado_esperado} ]; then
+            echo "::error::O resultado esperado era ${resultado_esperado} e o resultado foi ${resultado}"
+            exit 1
+          fi
