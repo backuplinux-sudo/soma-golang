@@ -29,10 +29,11 @@ jobs:
           name: artefato_golang
       - name: Listar arquivos
         run: |
-          whoami
           ls -la
       - name: Teste do artefato
         run: |
+          chmod 744 soma
+
           resultado_esperado="110"
           resultado=$(./soma 33 77)
           if [ ${resultado} != ${resultado_esperado} ]; then
