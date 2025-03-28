@@ -20,10 +20,6 @@ jobs:
             ~/.cache/go-build
             ~/go/pkg/mod
           key: go-${{ hashFiles('**/go.sum') }}
-      - name: Update go.mod e go.sum
-        run: |
-          go mod edit -require=github.com/softchris/math@v0.1.0
-          go mod tidy
       - name: Build da aplicação
         run: go build -o soma .
       - name: Upload do artefato
